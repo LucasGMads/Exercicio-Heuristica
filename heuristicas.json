@@ -1,0 +1,29 @@
+{
+  "Bucharest": {
+    "Arad": 366, "Zerind": 374, "Oradea": 380, "Sibiu": 253,
+    "Timisoara": 329, "Lugoj": 244, "Mehadia": 241,
+    "Dobreta": 242, "Craiova": 160, "Rimnicu": 193,
+    "Fagaras": 178, "Pitesti": 98, "Bucharest": 0, "Giurgiu": 77
+  },
+
+  "Sibiu": {
+    "Arad": 140, "Zerind": 220, "Oradea": 151, "Sibiu": 0,
+    "Timisoara": 230, "Lugoj": 300, "Mehadia": 360,
+    "Dobreta": 430, "Craiova": 280, "Rimnicu": 80,
+    "Fagaras": 99, "Pitesti": 177, "Bucharest": 253, "Giurgiu": 300
+  },
+
+  "Pitesti": {
+    "Arad": 320, "Zerind": 330, "Oradea": 340, "Sibiu": 177,
+    "Timisoara": 290, "Lugoj": 260, "Mehadia": 230,
+    "Dobreta": 210, "Craiova": 138, "Rimnicu": 97,
+    "Fagaras": 120, "Pitesti": 0, "Bucharest": 101, "Giurgiu": 180
+  },
+
+  "Timisoara": {
+    "Arad": 118, "Zerind": 190, "Oradea": 230, "Sibiu": 230,
+    "Timisoara": 0, "Lugoj": 111, "Mehadia": 181,
+    "Dobreta": 250, "Craiova": 320, "Rimnicu": 280,
+    "Fagaras": 310, "Pitesti": 290, "Bucharest": 329, "Giurgiu": 400
+  }
+}
