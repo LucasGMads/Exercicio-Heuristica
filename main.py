@@ -1,11 +1,11 @@
-import json
-import networkx as nx
-import matplotlib.pyplot as plt
+import json # Arquivos externos do codigo principal
+import networkx as nx #Biblioteca para manipulação e criação de grafos
+import matplotlib.pyplot as plt #Biblioteca para viazualizar grafos
 
 
-# CLASSES
+# Clases
 
-class Vertice:
+class Vertice: # Representa um vértice (nó) no grafo
     def __init__(self, rotulo):
         self.rotulo = rotulo
         self.adjacentes = []
@@ -14,15 +14,15 @@ class Vertice:
         self.adjacentes.append(adj)
 
 
-class Adjacente:
+class Adjacente: # Representa um conexão(aresta) entre dois vertices
     def __init__(self, vertice, custo):
         self.vertice = vertice
         self.custo = custo
 
 
-class Grafo:
+class Grafo: # Monta o grafo
     def __init__(self):
-        with open("cidades.json", "r") as f:
+        with open("cidades.json", "r") as f: # Busca as cidades no arquivo Json
             dados = json.load(f)
 
         self.cidades = {nome: Vertice(nome) for nome in dados}
@@ -35,14 +35,14 @@ class Grafo:
 
 
 
-# HEURÍSTICAS
+# Heuristica
 
-with open("heuristicas.json", "r") as f:
+with open("heuristicas.json", "r") as f: # Busca a heuristica no arquivo Json
     heuristicas = json.load(f)
 
 
 
-# IDA*
+# Ida*
 
 class IDAEstrela:
     def __init__(self, objetivo, grafo):
@@ -92,7 +92,7 @@ class IDAEstrela:
 
         return minimo
 
-    def custo_total(self, caminho):
+    def custo_total(self, caminho): # Dá o custo total do caminho
         custo = 0
 
         for i in range(len(caminho) - 1):
@@ -108,9 +108,9 @@ class IDAEstrela:
 
 
 
-# DESENHA O MAPA
+# Desenha o mapa
 
-def desenhar_mapa(grafo, caminho=None):
+def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação gráfica
     G = nx.Graph()
 
     for cidade in grafo.cidades.values():
@@ -130,9 +130,9 @@ def desenhar_mapa(grafo, caminho=None):
 
     plt.show()
 
-# MAIN
+# Main
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Função de pedir os dados para a comparação do grafo
     print("=== IDA* - MAPA DE CIDADES ===")
 
     mapa = Grafo()
