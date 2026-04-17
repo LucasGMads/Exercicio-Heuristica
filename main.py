@@ -1,11 +1,10 @@
-import json
-import networkx as nx #
-import matplotlib.pyplot as plt # Biblioteca de mapas
+import json # Arquivos externos do codigo principal
+import networkx as nx #Biblioteca para manipulação e criação de grafos
+import matplotlib.pyplot as plt #Biblioteca para viazualizar grafos
 
+# Clases
 
-# CLASSES
-
-class Vertice:
+class Vertice: # Representa um vértice (nó) no grafo
     def __init__(self, rotulo):
         self.rotulo = rotulo
         self.adjacentes = []
@@ -14,15 +13,15 @@ class Vertice:
         self.adjacentes.append(adj)
 
 
-class Adjacente:
+class Adjacente: # Representa um conexão(aresta) entre dois vertices
     def __init__(self, vertice, custo):
         self.vertice = vertice
         self.custo = custo
 
 
-class Grafo:
+class Grafo: # Monta o grafo
     def __init__(self):
-        with open("cidades.json", "r") as f:
+        with open("cidades.json", "r") as f: # Busca as cidades no arquivo Json
             dados = json.load(f)
 
         self.cidades = {nome: Vertice(nome) for nome in dados}
@@ -34,15 +33,13 @@ class Grafo:
                 )
 
 
+# Heuristica
 
-# HEURÍSTICAS
-
-with open("heuristicas.json", "r") as f:
+with open("heuristicas.json", "r") as f: # Busca a heuristica no arquivo Json
     heuristicas = json.load(f)
 
 
-
-# IDA*
+# Ida*
 
 class IDAEstrela:
     def __init__(self, objetivo, grafo):
@@ -92,7 +89,7 @@ class IDAEstrela:
 
         return minimo
 
-    def custo_total(self, caminho):
+    def custo_total(self, caminho): # Dá o custo total do caminho
         custo = 0
 
         for i in range(len(caminho) - 1):
@@ -107,17 +104,41 @@ class IDAEstrela:
         return custo
 
 
+# Desenha o mapa
 
-# DESENHA O MAPA
-
-def desenhar_mapa(grafo, caminho=None):
+def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação gráfica
     G = nx.Graph()
+
+    for cidade in grafo.cidades.values():
+        G.add_node(cidade.rotulo)
 
     for cidade in grafo.cidades.values():
         for adj in cidade.adjacentes:
             G.add_edge(cidade.rotulo, adj.vertice.rotulo, weight=adj.custo)
-
-    pos = nx.spring_layout(G)
+            
+    # Posições baseadas no mapa real da Romênia
+    pos = {
+        "Oradea":    (0.35, 0.90),
+        "Zerind":    (0.28, 0.80),
+        "Arad":      (0.18, 0.68),
+        "Timisoara": (0.15, 0.52),
+        "Lugoj":     (0.28, 0.44),
+        "Mehadia":   (0.32, 0.36),
+        "Dobreta":   (0.25, 0.26),
+        "Craiova":   (0.40, 0.20),
+        "Rimnicu":   (0.48, 0.50),
+        "Sibiu":     (0.50, 0.63),
+        "Fagaras":   (0.63, 0.63),
+        "Pitesti":   (0.58, 0.40),
+        "Bucharest": (0.72, 0.28),
+        "Giurgiu":   (0.68, 0.14),
+        "Urziceni":  (0.85, 0.32),
+        "Hirsova":   (0.95, 0.32),
+        "Eforie":    (0.98, 0.18),
+        "Vaslui":    (0.95, 0.55),
+        "Iasi":      (0.90, 0.68),
+        "Neamt":     (0.78, 0.78),
+        }
 
     nx.draw(G, pos, with_labels=True, node_size=2000, font_size=8)
 
@@ -130,9 +151,9 @@ def desenhar_mapa(grafo, caminho=None):
 
     plt.show()
 
-# MAIN
+# Main
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Função de pedir os dados para a comparação do grafo
     print("=== IDA* - MAPA DE CIDADES ===")
 
     mapa = Grafo()
