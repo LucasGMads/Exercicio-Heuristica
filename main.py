@@ -128,7 +128,7 @@ def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação g
         "Craiova":   (0.40, 0.20),
         "Rimnicu":   (0.48, 0.50),
         "Sibiu":     (0.50, 0.63),
-        "Fagaras":   (0.63, 0.63),
+        "Fagaras":   (0.63, 0.63),                            
         "Pitesti":   (0.58, 0.40),
         "Bucharest": (0.72, 0.28),
         "Giurgiu":   (0.68, 0.14),
