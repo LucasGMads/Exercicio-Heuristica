@@ -107,10 +107,10 @@ class IDAEstrela:
 # Cria o mapa
 
 def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação gráfica
-    G = nx.Graph() # Cria um grafo vazio, sem nós e sem arestas.
+    G = nx.Graph() # Cria um grafo vazio, sem nós e sem arestas
 
     for cidade in grafo.cidades.values():
-        G.add_node(cidade.rotulo) # Adiciona os nós
+        G.add_node(cidade.rotulo) # Adiciona os nós no grafo
 
     for cidade in grafo.cidades.values():
         for adj in cidade.adjacentes:
@@ -139,7 +139,7 @@ def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação g
         "Neamt":     (0.78, 0.78),
         }
 
-    nx.draw(G, pos, with_labels=True, node_size=2000, font_size=8) # Desenha o gráfico
+    nx.draw(G, pos, with_labels=True, node_size=2000, font_size=8) # Desenha o gráfico, utiliza o dicionario, desenha os rotulos(nome) das cidades e define o tamanho dos nós e dos rotulo
 
     if caminho:
         edges = list(zip(caminho, caminho[1:]))
