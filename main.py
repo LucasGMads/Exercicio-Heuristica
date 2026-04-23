@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt #Biblioteca para viazualizar grafos
 
 # Clases
 
-class Vertice: # Representa um vértice (nó) no grafo
+class Vertice: # Representa um vértice (nó)
     def __init__(self, rotulo):
         self.rotulo = rotulo
         self.adjacentes = []
@@ -13,7 +13,7 @@ class Vertice: # Representa um vértice (nó) no grafo
         self.adjacentes.append(adj)
 
 
-class Adjacente: # Representa um conexão(aresta) entre dois vertices
+class Adjacente: # Representa a conexão(aresta)
     def __init__(self, vertice, custo):
         self.vertice = vertice
         self.custo = custo
@@ -104,18 +104,17 @@ class IDAEstrela:
         return custo
 
 
-# Desenha o mapa
+# Cria o mapa
 
 def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação gráfica
-    G = nx.Graph()
+    G = nx.Graph() # Cria um grafo vazio, sem nós e sem arestas.
 
     for cidade in grafo.cidades.values():
-        G.add_node(cidade.rotulo)
+        G.add_node(cidade.rotulo) # Adiciona os nós
 
     for cidade in grafo.cidades.values():
         for adj in cidade.adjacentes:
-            G.add_edge(cidade.rotulo, adj.vertice.rotulo, weight=adj.custo)
-            
+            G.add_edge(cidade.rotulo, adj.vertice.rotulo, weight=adj.custo) #Cria as conexão no grafo
     # Posições baseadas no mapa real da Romênia
     pos = {
         "Oradea":    (0.35, 0.90),
@@ -140,7 +139,7 @@ def desenhar_mapa(grafo, caminho=None): # Converte o grafo em uma vizuliação g
         "Neamt":     (0.78, 0.78),
         }
 
-    nx.draw(G, pos, with_labels=True, node_size=2000, font_size=8)
+    nx.draw(G, pos, with_labels=True, node_size=2000, font_size=8) # Desenha o gráfico
 
     if caminho:
         edges = list(zip(caminho, caminho[1:]))
